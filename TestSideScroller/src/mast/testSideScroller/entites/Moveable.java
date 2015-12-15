@@ -1,6 +1,6 @@
 package mast.testSideScroller.entites;
 
-public class Moveable {
+public abstract class Moveable {
 
 	private int dX = 0, dY = 0, x = 0, y = 0;
 	private EntityID ID;
@@ -15,6 +15,11 @@ public class Moveable {
 		ID = id;
 	}
 
+	abstract void tick(int delta);
+	
+	private void moveableTick(int delta){
+		tick(delta);
+	}
 	
 	//getters and setters for variables
 	public EntityID getID() {
