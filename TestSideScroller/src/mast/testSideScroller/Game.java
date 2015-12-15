@@ -4,7 +4,7 @@ import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
-import mast.testSideScroller.states.MainMenu;
+import mast.testSideScroller.states.*;
 
 public class Game extends StateBasedGame{
 
@@ -34,6 +34,8 @@ public class Game extends StateBasedGame{
 	@Override
 	public void initStatesList(GameContainer gc) throws SlickException {
 		addState(new MainMenu());
+		addState(new PlayGame());
+		addState(new MapMaker());
 	}
 
 }

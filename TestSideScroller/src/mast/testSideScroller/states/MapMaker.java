@@ -9,26 +9,30 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import mast.testSideScroller.tools.States;
 
-public class PlayGame extends BasicGameState{
+public class MapMaker extends BasicGameState{
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame game) throws SlickException {
+		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame game, Graphics g) throws SlickException {
-		g.setBackground(Color.green);
+		// TODO Auto-generated method stub
+		g.setBackground(Color.red);
 	}
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame game, int delta) throws SlickException {
+		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public int getID() {
-		return States.PlayGame;
+		// TODO Auto-generated method stub
+		return States.MapMaker;
 	}
 
 }

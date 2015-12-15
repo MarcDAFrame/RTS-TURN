@@ -26,9 +26,9 @@ public class MainMenu extends BasicGameState{
 	@Override
 	public void render(GameContainer gc, StateBasedGame game, Graphics g) throws SlickException {
 		g.setBackground(Color.blue);
-		play.draw(g, 0, 0);
-		make.draw(g, 0, 64);
-		exit.draw(g, 0, 128);
+		play.draw(g, 160, 128);
+		make.draw(g, 160, 224);
+		exit.draw(g, 160, 320);
 	}
 
 	@Override
@@ -36,14 +36,20 @@ public class MainMenu extends BasicGameState{
 		
 		if(play.update(gc.getInput())){
 			System.out.println("play");
+			game.enterState(States.PlayGame);
+			//enters the game
 		}
+		
 		
 		if(make.update(gc.getInput())){
 			System.out.println("make");
+			game.enterState(States.MapMaker);
+			//enters MapMaker(think Mario maker type thing)
 		}
 		
 		if(exit.update(gc.getInput())){
 			System.out.println("exit");
+			gc.exit();
 		}
 		
 	}
