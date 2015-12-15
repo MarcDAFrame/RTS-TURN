@@ -6,10 +6,10 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-public class MainMenu extends BasicGameState{
-
-	final int ID = 0;
+public class PlayGame extends BasicGameState{
 	
+	final int ID = 1;
+
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
 		
