@@ -28,7 +28,7 @@ public class Game extends StateBasedGame{
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
-		
+		// test - Marc
 	}
 	
 	@Override
