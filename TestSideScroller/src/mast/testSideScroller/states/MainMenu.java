@@ -17,9 +17,9 @@ public class MainMenu extends BasicGameState{
 	@Override
 	public void init(GameContainer gc, StateBasedGame game) throws SlickException {
 		
-		play = new Button("res/imgs/UI/play/");
-		make = new Button("res/imgs/UI/make/");
-		exit = new Button("res/imgs/UI/exit/");
+		play = new Button("res/imgs/ui/play/");
+		make = new Button("res/imgs/ui/make/");
+		exit = new Button("res/imgs/ui/exit/");
 		
 	}
 
