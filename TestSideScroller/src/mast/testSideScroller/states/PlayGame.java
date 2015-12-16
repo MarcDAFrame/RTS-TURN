@@ -7,6 +7,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import mast.testSideScroller.tools.Resources;
 import mast.testSideScroller.tools.States;
 
 public class PlayGame extends BasicGameState{
@@ -19,6 +20,7 @@ public class PlayGame extends BasicGameState{
 	@Override
 	public void render(GameContainer gc, StateBasedGame game, Graphics g) throws SlickException {
 		g.setBackground(Color.green);
+		g.drawImage(Resources.returnImage("tileSheet"), 0, 0);
 	}
 
 	@Override
