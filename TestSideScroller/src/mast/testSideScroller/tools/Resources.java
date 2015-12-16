@@ -13,7 +13,6 @@ public class Resources {
 			tileSheet = new Image("res/imgs/tiles/Tile Sheet2.png");
 			exit = new Image("res/imgs/ui/play/0.png");
 		} catch (SlickException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -28,6 +27,16 @@ public class Resources {
 			return null;
 		}
 
+	}
+	
+	private Image[][] spriteSheetCutter(Image sheet, int colum, int row, int width, int height){
+		Image[][] listOfImages = new Image[colum * row];
+		
+		for(int x = 0; x < colum; x++){
+			for(int y = 0; y < row; y++){
+				Image[x][y] = 
+			}
+		}
 	}
 
 }
