@@ -31,20 +31,35 @@ public class MapMaker extends BasicGameState{
 	public void update(GameContainer gc, StateBasedGame game, int delta) throws SlickException {
 		// TODO Auto-generated method stub
 		Input input = gc.getInput();
-		if(input.isKeyDown(Input.KEY_1)){
+		
+		if(input.isKeyPressed(Input.KEY_GRAVE)){//that weird french ~ icon ~ ~ ~
+			selectedBlock = 0;
+			System.out.println("selected block: nothing");
+			//nothing
+		}
+		if(input.isKeyPressed(Input.KEY_1)){
 			selectedBlock = 1;
+			System.out.println("selected block: dirt");
 			//dirt
 		}
-		if(input.isKeyDown(Input.KEY_2)){
+		if(input.isKeyPressed(Input.KEY_2)){
 			selectedBlock = 2;
+			System.out.println("selected block: stone");
 			//stone
 		}
-		if(input.isKeyDown(Input.KEY_3)){
+		if(input.isKeyPressed(Input.KEY_3)){
 			selectedBlock = 3;
+			System.out.println("selected block: metal");
 			//metal
 		}
-		if(input.isKeyDown(Input.KEY_4)){
+		if(input.isKeyPressed(Input.KEY_4)){
 			selectedBlock = 4;
+			System.out.println("selected block: specalBlock");
+			//specialBlock
+		}
+		if(input.isKeyPressed(Input.KEY_5)){
+			selectedBlock = 5;
+			System.out.println("selected block: air1");
 			//specialBlock
 		}
 		
