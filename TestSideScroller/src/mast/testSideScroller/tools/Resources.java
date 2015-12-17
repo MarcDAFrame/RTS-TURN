@@ -18,7 +18,7 @@ public class Resources {
 		}
 	}
 
-	public static Image returnImage(String getter) {
+	public Image returnImage(String getter) {
 		imageInit();
 		if (getter == "tileSheet") {
 			return tileSheet;
@@ -29,5 +29,6 @@ public class Resources {
 		}
 
 	}
+	 
 
 }
