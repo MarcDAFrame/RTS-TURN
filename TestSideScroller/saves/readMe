@@ -1,0 +1,11 @@
+this is an example:
+
+1(1),1(1),0(1),0(0),
+
+it is to split at every comma(see Map.java/mapParse())
+
+it uses the function of 
+path = saves/readMe.txt
+FileReader fr = new FileReader(path);
+BufferedReader textReader = new BufferedReader(fr);
+textReader.readLine();
