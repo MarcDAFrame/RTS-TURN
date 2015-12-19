@@ -21,6 +21,10 @@ public abstract class Moveable {
 		tick(delta);
 	}
 	
+	protected void addToX(int i){
+		x += i;
+	}
+
 	//getters and setters for variables
 	public EntityID getID() {
 		return ID;
