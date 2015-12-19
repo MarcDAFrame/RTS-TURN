@@ -23,6 +23,7 @@ public class MapMaker extends BasicGameState{
 	@Override
 	public void render(GameContainer gc, StateBasedGame game, Graphics g) throws SlickException {
 		g.setBackground(Color.red);
+		
 	}
 
 	@Override

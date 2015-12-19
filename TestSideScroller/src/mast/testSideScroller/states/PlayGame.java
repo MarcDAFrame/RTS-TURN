@@ -12,17 +12,19 @@ import mast.testSideScroller.tools.Resources;
 import mast.testSideScroller.tools.States;
 
 public class PlayGame extends BasicGameState{
-
+	
+	Map map;
+	
 	@Override
 	public void init(GameContainer gc, StateBasedGame game) throws SlickException {
-		Map.mapInit();
+		
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame game, Graphics g) throws SlickException {
 		g.setBackground(Color.green);
 		g.drawImage(Resources.returnImage("tileSheet"), 0, 0);
-		Map.mapDraw(g);
+		//Map.mapDraw(g);
 	}
 
 	@Override
