@@ -58,6 +58,18 @@ public class Map {
 	public static void mapWrite(String path) throws IOException {
 		FileWriter fw = new FileWriter(path);
 		PrintWriter pw = new PrintWriter(fw);
+		
+		for(int i = 0; i < 3; i++){
+			
+			for(int j = 0; j < 3; j++){
+				pw.print(mapData[i][j] + ",");
+			}
+			pw.println();
+			
+		}
+		
+		pw.close();
+		
 	}
 
 	public static void mapWrite() {
