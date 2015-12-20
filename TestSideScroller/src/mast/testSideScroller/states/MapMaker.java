@@ -1,5 +1,7 @@
 package mast.testSideScroller.states;
 
+import java.io.IOException;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -8,15 +10,23 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import mast.testSideScroller.tools.Map;
 import mast.testSideScroller.tools.States;
 
 public class MapMaker extends BasicGameState{
 	
 	//selectedBlock 0 = nothing, 1 = dirt, 2 = stone, 3 = metal, 4 = specialBlock, 5 = air1, 6 = air2, 7 = air3, 8 = air4
 	static int selectedBlock = 0;
+	Map map;
 	
 	@Override
 	public void init(GameContainer gc, StateBasedGame game) throws SlickException {
+		try {
+			map = new Map("saves/test");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 

@@ -1,8 +1,11 @@
 package mast.testSideScroller.tools;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -23,25 +26,40 @@ public class Map {
 	}
 	
 	public static void mapParse(String path) throws IOException {
-		String tempMapLineData = null;
+		String tempMapLineArray[];
+		String tempMapLineData;
 		
-		FileReader fr = new FileReader("path"); 
+		FileReader fr = new FileReader(path); 
 		BufferedReader br = new BufferedReader(fr); 
 		
+//		File f = new File(path);
+//		System.out.println(path);
+//		if(f.exists() && !f.isDirectory()) { 
+//		    System.out.println("yes");
+//		}
+		
 		for(int i = 0; i < mapWidth; i++){
-			tempMapLineData = br.readLine();
+			
+			tempMapLineData = br.readLine();	
+			tempMapLineArray = tempMapLineData.split(",");
+			
 			for(int j = 0; j < mapHeight; j++){
-				tempMapLineData.split(",");
-				mapData[i/32][j/32] = tempMapLineData;
+				
+				System.out.println(tempMapLineArray[j]);
+				mapData[i][j] = tempMapLineArray[j];
+				
 			}
 			
-			tempMapLineData = null;
 		}
-		for(int i=0; i<1; i++){
-			for(int j = 0; j<1; j++){
-				System.out.println(mapData[i][j]);
-			}
-		}
+//		for(int i=0; i<1; i++){
+//			for(int j = 0; j<1; j++){
+//				System.out.println(mapData[i][j]);
+//			}
+//		}
+	}
+	public static void mapWrite(String path) throws IOException {
+		FileWriter fw = new FileWriter(path); 
+		PrintWriter pw = new PrintWriter(fw); 
 	}
 	
 	
