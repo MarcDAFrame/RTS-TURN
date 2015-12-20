@@ -22,7 +22,7 @@ public class MapMaker extends BasicGameState{
 	@Override
 	public void init(GameContainer gc, StateBasedGame game) throws SlickException {
 		try {
-			map = new Map("saves/test");
+			map = new Map("saves/test.txt");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
