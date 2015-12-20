@@ -11,9 +11,9 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
 public class Map {
-	//private static int mapWidth = 3, mapHeight = 3;
+	private static int mapWidth = 512, mapHeight = 512;
 	private static Image[][] tileSheetArray;
-	private static String [][] mapData;
+	private static String [][] mapData = new String[mapHeight/32][mapWidth/32];
 
 	public Map(String path) throws IOException {
 		mapInit();
@@ -39,24 +39,20 @@ public class Map {
 		// System.out.println("yes");
 		// }
 
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < mapHeight/32; i++) {
 
 			tempMapLineData = br.readLine();
 			tempMapLineArray = tempMapLineData.split(",");
 
-			for (int j = 0; j < 3; j++) {
+			for (int j = 0; j < mapWidth/32; j++) {
 				
-				System.out.println(tempMapLineArray[j]); //but this works?
-				mapData[i][j] = tempMapLineArray[j]; //null pointer exception?
-
+				System.out.println(tempMapLineArray[j]);
+				mapData[i][j] = tempMapLineArray[j]; //this works now
+				
 			}
 
 		}
-		// for(int i=0; i<1; i++){
-		// for(int j = 0; j<1; j++){
-		// System.out.println(mapData[i][j]);
-		// }
-		// }
+
 	}
 
 	public static void mapWrite(String path) throws IOException {
