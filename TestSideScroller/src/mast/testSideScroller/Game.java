@@ -24,6 +24,10 @@ public class Game extends StateBasedGame{
 			appGC.setDisplayMode(WIDTH, HEIGHT, false);
 			appGC.setShowFPS(false);
 			appGC.setTargetFrameRate(60);
+			
+			appGC.setMaximumLogicUpdateInterval(20);//this makes it so that the speed of the game isn't connected to the FPS
+			appGC.setMinimumLogicUpdateInterval(20);
+			
 			appGC.start();
 		} catch (SlickException e) {
 			e.printStackTrace();

@@ -11,7 +11,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
 public class Map {
-	private static int mapWidth = 512, mapHeight = 512;
+	private static int mapWidth = 96, mapHeight = 96;
 	private static Image[][] tileSheetArray;
 	private static String [][] mapData = new String[mapHeight/32][mapWidth/32];
 

@@ -3,7 +3,9 @@ package mast.testSideScroller.states;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.gui.TextField;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -15,7 +17,7 @@ import mast.testSideScroller.tools.States;
 public class PlayGame extends BasicGameState{
 	
 	Map map;
-
+	TextField textField;
 
 	private Player player;
 
@@ -25,7 +27,8 @@ public class PlayGame extends BasicGameState{
 
 		Map.mapInit();
 		player = new Player(gc);
-
+		textField = new TextField(gc, gc.getDefaultFont(), 50, 50, 200, 20);
+		
 	}
 
 	@Override
@@ -35,12 +38,20 @@ public class PlayGame extends BasicGameState{
 
 		player.render(g);
 		Map.mapDraw(g);
+		textField.render(gc, g);
+		
 		
 	}
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame game, int delta) throws SlickException {
 		player.tick(delta);
+		
+		String test = textField.getText();
+		
+		if(gc.getInput().isKeyPressed(Input.KEY_ENTER)){
+			System.out.println(test);
+		}
 	}
 
 	@Override
