@@ -29,16 +29,6 @@ public class MapMaker extends BasicGameState {
 
 		mapNameGetter = new TextField(gc, gc.getDefaultFont(), 106, 236, 300, 22);
 
-		if (TextFieldOpen == false) {
-			System.out.println("why");
-			try {
-				map = new Map(path);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-
 	}
 
 	@Override
@@ -58,11 +48,13 @@ public class MapMaker extends BasicGameState {
 		if (TextFieldOpen) {
 			if (input.isKeyPressed(Input.KEY_ENTER)) {
 				path = "saves/" + mapNameGetter.getText() + ".txt";
+				// System.out.println(path);
 				TextFieldOpen = false;
 			}
 		}
 
 		if (TextFieldOpen == false) {
+
 			if (input.isKeyPressed(Input.KEY_GRAVE)) {// that weird french icon
 				selectedBlock = 0;
 				System.out.println("selected block: nothing");
@@ -92,6 +84,16 @@ public class MapMaker extends BasicGameState {
 				selectedBlock = 5;
 				System.out.println("selected block: air1");
 				// airBlock1
+			}
+		}
+
+		if (TextFieldOpen == false) {
+			System.out.println("test");
+			try {
+				map = new Map(path);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 

@@ -1,5 +1,7 @@
 package mast.testSideScroller.states;
 
+import java.io.IOException;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -25,7 +27,12 @@ public class PlayGame extends BasicGameState{
 	@Override
 	public void init(GameContainer gc, StateBasedGame game) throws SlickException {
 
-		Map.mapInit();
+		try {
+			map = new Map("saves/test.txt");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		player = new Player(gc);
 		textField = new TextField(gc, gc.getDefaultFont(), 50, 50, 200, 20);
 		
@@ -34,11 +41,11 @@ public class PlayGame extends BasicGameState{
 	@Override
 	public void render(GameContainer gc, StateBasedGame game, Graphics g) throws SlickException {
 		g.setBackground(Color.green);
-		g.drawImage(Resources.returnImage("tileSheet"), 0, 0);
+		//g.drawImage(Resources.returnImage("tileSheet"), 0, 0);
 
 		player.render(g);
-		Map.mapDraw(g);
-		textField.render(gc, g);
+		Map.mapDraw(g, Map.getMapData());
+		//textField.render(gc, g);
 		
 		
 	}
