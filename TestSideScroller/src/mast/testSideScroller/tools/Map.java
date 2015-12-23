@@ -7,8 +7,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
 
 public class Map {
 	private static int mapWidth = 512, mapHeight = 512;
@@ -16,14 +18,14 @@ public class Map {
 	private static String[][] mapData = new String[mapHeight / 32][mapWidth / 32];
 
 	public Map(String path) throws IOException {
-		System.out.println("Map");
+		//System.out.println("Map");
 		mapInit();
 		File f = new File(path);
 		if (f.exists() && !f.isDirectory()) {
-			System.out.println("test");
+			//System.out.println("test");
 
 		} else {
-			System.out.println("test");
+			//System.out.println("test");
 			mapCreate(path);
 		}
 		mapParse(path);
@@ -35,7 +37,7 @@ public class Map {
 	}
 
 	public static void mapParse(String path) throws IOException {
-		String[] tempMapLineArray = new String[mapWidth/32];
+		String[] tempMapLineArray = new String[mapWidth / 32];
 		String tempMapLineData;
 
 		FileReader fr = new FileReader(path);
@@ -54,8 +56,8 @@ public class Map {
 
 			for (int j = 0; j < mapWidth / 32; j++) {
 
-				System.out.println(tempMapLineArray[j]);
-				mapData[i][j] = tempMapLineArray[j]; // this works now
+				// System.out.println(tempMapLineArray[j]);
+				mapData[j][i] = tempMapLineArray[j]; // this works now
 
 			}
 
@@ -63,14 +65,14 @@ public class Map {
 
 	}
 
-	public static void mapWrite(String path) throws IOException {
+	public static void mapWrite(String path, String [][] mapData) throws IOException {
 		FileWriter fw = new FileWriter(path);
 		PrintWriter pw = new PrintWriter(fw);
 
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < mapHeight/32; i++) {
 
-			for (int j = 0; j < 3; j++) {
-				pw.print(mapData[i][j] + ",");
+			for (int j = 0; j < mapWidth/32; j++) {
+				pw.print(mapData[j][i] + ",");
 			}
 			pw.println();
 
@@ -89,10 +91,10 @@ public class Map {
 
 		f.createNewFile();
 		f.delete();
-		System.out.println(f.getPath());
+		//System.out.println(f.getPath());
 
-		for (int i = 0; i < mapWidth/32; i++) {
-			for (int j = 0; j < mapHeight/32; j++) {
+		for (int i = 0; i < mapWidth / 32; i++) {
+			for (int j = 0; j < mapHeight / 32; j++) {
 				pw.print("a0,");
 			}
 			pw.println();
@@ -100,23 +102,74 @@ public class Map {
 		pw.close();
 
 	}
-
-	public static void mapDraw(Graphics g, String [][] mapData) {
+	
+	public void mapEdit(GameContainer gc, String ID, String path, int x, int y){
 		
-		for(int i = 0; i < mapHeight/32; i++){
-			for(int j = 0; j < mapHeight/32; j++){
-				if(mapData[i][j].equals("a0")){
-					g.drawImage(tileSheetArray[0][0], i*32, j*32);
-					//System.out.println("working");
-					
-				}
-			}
+		mapData[x/32][y/32] = ID;
+		try {
+			mapWrite(path, mapData);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
 		
 	}
 	
-	public static String[][] getMapData(){
+	public void mapDraw(Graphics g, String[][] mapData) {
+
+		for (int i = 0; i < mapHeight / 32; i++) {
+			for (int j = 0; j < mapHeight / 32; j++) {
+				
+				if (mapData[i][j].equals("00")) { //grass
+					g.drawImage(tileSheetArray[7][7], i * 32, j * 32);
+					// System.out.println("working");
+
+				}
+				if (mapData[i][j].equals("a0")) { //grass
+					g.drawImage(tileSheetArray[0][0], i * 32, j * 32);
+					// System.out.println("working");
+
+				}
+				if (mapData[i][j].equals("a1")) { //stone
+					g.drawImage(tileSheetArray[1][0], i*32, j*32);
+
+				}
+				if (mapData[i][j].equals("a2")) { //stone
+					g.drawImage(tileSheetArray[2][0], i*32, j*32);
+
+				}
+				if (mapData[i][j].equals("a3")) { //metal
+					g.drawImage(tileSheetArray[3][0], i*32, j*32);
+
+				}
+				if (mapData[i][j].equals("a4")) { //mystery block
+					g.drawImage(tileSheetArray[0][1], i*32, j*32);
+
+				}
+				if (mapData[i][j].equals("a5")) { //air1
+					g.drawImage(tileSheetArray[1][1], i*32, j*32);
+
+				}
+				if (mapData[i][j].equals("a6")) { //air2
+					g.drawImage(tileSheetArray[2][1], i*32, j*32);
+
+				}
+				if (mapData[i][j].equals("a7")) { //air3
+					g.drawImage(tileSheetArray[3][1], i*32, j*32);
+
+				}
+				
+			}
+		}
+		
+	
+
+		// g.drawImage(Resources.returnImage("tileSheet").getSubImage(32, 0, 32,
+		// 32), 200, 200);
+
+	}
+
+	public static String[][] getMapData() {
 		return mapData;
 	}
 }

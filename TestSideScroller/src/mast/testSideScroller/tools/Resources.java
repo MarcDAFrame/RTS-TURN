@@ -37,7 +37,8 @@ public class Resources {
 		
 		for(int x = 0; x < column/32; x++){
 			for(int y = 0; y < row/32; y++){
-				tileSheetArray[x][y] = tileSheet.getSubImage(column, row, 32, 32);
+				tileSheetArray[x][y] = tileSheet.getSubImage(x*32, y*32, 32, 32);
+				//System.out.println(x + " " + y);
 			}
 		}
 		return tileSheetArray;

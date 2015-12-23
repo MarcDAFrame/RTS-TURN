@@ -18,7 +18,7 @@ public class MapMaker extends BasicGameState {
 
 	// selectedBlock 0 = nothing, 1 = dirt, 2 = stone, 3 = metal, 4 =
 	// specialBlock, 5 = air1, 6 = air2, 7 = air3, 8 = air4
-	static int selectedBlock = 0;
+	String selectedBlock = "a0";
 	String path;
 	Map map;
 	TextField mapNameGetter;
@@ -39,6 +39,10 @@ public class MapMaker extends BasicGameState {
 			g.setBackground(Color.cyan);
 		}
 
+		if (TextFieldOpen == false) {
+			map.mapDraw(g, Map.getMapData());
+		}
+
 	}
 
 	@Override
@@ -56,39 +60,61 @@ public class MapMaker extends BasicGameState {
 		if (TextFieldOpen == false) {
 
 			if (input.isKeyPressed(Input.KEY_GRAVE)) {// that weird french icon
-				selectedBlock = 0;
+				selectedBlock = "00";
 				System.out.println("selected block: nothing");
 				// nothing
 			}
 			if (input.isKeyPressed(Input.KEY_1)) {
-				selectedBlock = 1;
+				selectedBlock = "a0";
 				System.out.println("selected block: dirt");
 				// dirt
 			}
 			if (input.isKeyPressed(Input.KEY_2)) {
-				selectedBlock = 2;
+				selectedBlock = "a1";
 				System.out.println("selected block: stone");
 				// stone
 			}
 			if (input.isKeyPressed(Input.KEY_3)) {
-				selectedBlock = 3;
+				selectedBlock = "a2";
 				System.out.println("selected block: metal");
 				// metal
 			}
 			if (input.isKeyPressed(Input.KEY_4)) {
-				selectedBlock = 4;
+				selectedBlock = "a3";
 				System.out.println("selected block: specalBlock");
 				// specialBlock
 			}
 			if (input.isKeyPressed(Input.KEY_5)) {
-				selectedBlock = 5;
+				selectedBlock = "a4";
 				System.out.println("selected block: air1");
 				// airBlock1
 			}
+			if (input.isKeyPressed(Input.KEY_6)) {
+				selectedBlock = "a5";
+				System.out.println("selected block: air1");
+				// airBlock1
+			}
+			if (input.isKeyPressed(Input.KEY_7)) {
+				selectedBlock = "a6";
+				System.out.println("selected block: air1");
+				// airBlock1
+			}
+			if (input.isKeyPressed(Input.KEY_8)) {
+				selectedBlock = "a7";
+				System.out.println("selected block: air1");
+				// airBlock1
+			}
+
+			int x = input.getMouseX();
+			int y = input.getMouseY();
+			if (input.isMouseButtonDown(0)) {
+				map.mapEdit(gc, selectedBlock, path, x, y);
+			}
+
 		}
 
 		if (TextFieldOpen == false) {
-			System.out.println("test");
+			// System.out.println("test");
 			try {
 				map = new Map(path);
 			} catch (IOException e) {
