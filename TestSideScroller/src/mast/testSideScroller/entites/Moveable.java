@@ -2,7 +2,8 @@ package mast.testSideScroller.entites;
 
 public abstract class Moveable {
 
-	private int dX = 0, dY = 0, x = 0, y = 0;
+	private int x = 0, y = 0;
+	private double dY = 0;
 	private EntityID ID;
 	
 	public Moveable(EntityID id){
@@ -24,6 +25,10 @@ public abstract class Moveable {
 	protected void addToX(int i){
 		x += i;
 	}
+	
+	protected void addToY(double d){
+		y += d;
+	}
 
 	//getters and setters for variables
 	public EntityID getID() {
@@ -42,14 +47,6 @@ public abstract class Moveable {
 		this.x = x;
 	}
 
-	public int getdX() {
-		return dX;
-	}
-
-	public void setdX(int dX) {
-		this.dX = dX;
-	}
-
 	public int getY() {
 		return y;
 	}
@@ -58,12 +55,16 @@ public abstract class Moveable {
 		this.y = y;
 	}
 
-	public int getdY() {
+	public double getdY() {
 		return dY;
 	}
 
-	public void setdY(int dY) {
+	public void setdY(double dY) {
 		this.dY = dY;
+	}
+	
+	public void addTodY(double a){
+		this.dY += a;
 	}
 	
 }
