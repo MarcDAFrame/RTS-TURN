@@ -13,14 +13,15 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import mast.testSideScroller.entites.Player;
 import mast.testSideScroller.tools.Map;
-import mast.testSideScroller.tools.Resources;
 import mast.testSideScroller.tools.States;
 
 public class PlayGame extends BasicGameState{
 	
+	String path = "saves/test2.txt";
+	
 	Map map;
 	TextField textField;
-
+	
 	private Player player;
 
 	
@@ -28,7 +29,7 @@ public class PlayGame extends BasicGameState{
 	public void init(GameContainer gc, StateBasedGame game) throws SlickException {
 
 		try {
-			map = new Map("saves/Marc's swag map.txt");
+			map = new Map(path, 512, 512);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

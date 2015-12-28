@@ -21,9 +21,12 @@ public class MapMaker extends BasicGameState {
 	// specialBlock, 5 = air1, 6 = air2, 7 = air3, 8 = air4
 	String selectedBlock = "a0";
 	String path;
+	int mapWidthGetterInt = 0, mapHeightGetterInt = 0;
+	
 	Map map;
 	TextField mapNameGetter, mapWidthGetter, mapHeightGetter;
-	private Boolean TextFieldOpen = true;
+	String error = "";
+	private Boolean textFieldOpen = true;
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame game) throws SlickException {
@@ -37,18 +40,21 @@ public class MapMaker extends BasicGameState {
 	@Override
 	public void render(GameContainer gc, StateBasedGame game, Graphics g) throws SlickException {
 		g.setBackground(Color.red);
-		if (TextFieldOpen) {
+		if (textFieldOpen) {
 			g.setColor(Color.black);
 			g.drawString("Map Name:", 53, 218);
 			g.drawString("Map Width:", 53, 304);
 			g.drawString("Map Height:", 331, 304);
+			
 			mapNameGetter.render(gc, g);
 			mapWidthGetter.render(gc, g);
 			mapHeightGetter.render(gc, g);
 			g.setBackground(Color.white);
+			g.setColor(Color.red);
+			g.drawString(error, 53, 342);
 		}
 
-		if (TextFieldOpen == false) {
+		if (textFieldOpen == false) {
 			map.mapDraw(g, Map.getMapData());
 		}
 
@@ -58,22 +64,35 @@ public class MapMaker extends BasicGameState {
 	public void update(GameContainer gc, StateBasedGame game, int delta) throws SlickException {
 		Input input = gc.getInput();
 
-		if (TextFieldOpen) {
+		if (textFieldOpen) {
 			
 			if (input.isKeyPressed(Input.KEY_ENTER)) {
-				int mapWidthGetterInt = Integer.parseInt(mapWidthGetter.getText()); 
-				int mapHeightGetterInt = Integer.parseInt(mapHeightGetter.getText());
+				
 					if(mapNameGetter.getText() != null){
 						path = "saves/" + mapNameGetter.getText() + ".txt";
 						File f = new File(path);
-						if(f.exists() == false && !f.isDirectory() == false) { 
-							if(mapWidthGetterInt >= 512 && mapHeightGetterInt >= 512){
+						if(f.exists() && !f.isDirectory()) {
 							
-								TextFieldOpen = false;
-								System.out.println(mapWidthGetterInt);
-								System.out.println(mapHeightGetterInt);
+							textFieldOpen = false;
+														
+						}else{
+							if(mapWidthGetter.getText() != "" || mapHeightGetter.getText() != ""){ // need to check the textFields TODO MARC!
+								mapWidthGetterInt = Integer.parseInt(mapWidthGetter.getText()); 
+								mapHeightGetterInt = Integer.parseInt(mapHeightGetter.getText());
 								
+								
+								if(mapWidthGetterInt >= 512 && mapHeightGetterInt >= 512){
+									
+									textFieldOpen = false;
+									System.out.println(mapWidthGetterInt);
+									System.out.println(mapHeightGetterInt);
+									
+								}
+							}else{
+								error = "ERROR: specify width and height";
+								System.out.println(error);
 							}
+
 						}
 						
 					}
@@ -83,7 +102,7 @@ public class MapMaker extends BasicGameState {
 			}
 		}
 
-		if (TextFieldOpen == false) {
+		if (textFieldOpen == false) {
 
 			if (input.isKeyPressed(Input.KEY_GRAVE)) {// that weird french icon
 				selectedBlock = "00";
@@ -111,22 +130,22 @@ public class MapMaker extends BasicGameState {
 				// specialBlock
 			}
 			if (input.isKeyPressed(Input.KEY_5)) {
-				selectedBlock = "a4";
+				selectedBlock = "b1";
 				System.out.println("selected block: air1");
 				// airBlock1
 			}
 			if (input.isKeyPressed(Input.KEY_6)) {
-				selectedBlock = "a5";
+				selectedBlock = "b1";
 				System.out.println("selected block: air1");
 				// airBlock1
 			}
 			if (input.isKeyPressed(Input.KEY_7)) {
-				selectedBlock = "a6";
+				selectedBlock = "b1";
 				System.out.println("selected block: air1");
 				// airBlock1
 			}
 			if (input.isKeyPressed(Input.KEY_8)) {
-				selectedBlock = "a7";
+				selectedBlock = "b1";
 				System.out.println("selected block: air1");
 				// airBlock1
 			}
@@ -139,10 +158,10 @@ public class MapMaker extends BasicGameState {
 
 		}
 
-		if (TextFieldOpen == false) {
+		if (textFieldOpen == false) {
 			// System.out.println("test");
 			try {
-				map = new Map(path);
+				map = new Map(path, mapWidthGetterInt, mapHeightGetterInt);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
