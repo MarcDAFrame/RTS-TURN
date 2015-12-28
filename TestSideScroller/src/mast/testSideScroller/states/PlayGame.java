@@ -28,7 +28,7 @@ public class PlayGame extends BasicGameState{
 	public void init(GameContainer gc, StateBasedGame game) throws SlickException {
 
 		try {
-			map = new Map("saves/test.txt");
+			map = new Map("saves/Marc's swag map.txt");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

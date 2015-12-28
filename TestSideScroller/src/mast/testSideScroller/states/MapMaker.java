@@ -1,5 +1,6 @@
 package mast.testSideScroller.states;
 
+import java.io.File;
 import java.io.IOException;
 
 import org.newdawn.slick.Color;
@@ -21,13 +22,15 @@ public class MapMaker extends BasicGameState {
 	String selectedBlock = "a0";
 	String path;
 	Map map;
-	TextField mapNameGetter;
+	TextField mapNameGetter, mapWidthGetter, mapHeightGetter;
 	private Boolean TextFieldOpen = true;
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame game) throws SlickException {
 
-		mapNameGetter = new TextField(gc, gc.getDefaultFont(), 106, 236, 300, 22);
+		mapNameGetter = new TextField(gc, gc.getDefaultFont(), 53, 236, 415, 22);
+		mapWidthGetter = new TextField(gc, gc.getDefaultFont(), 53, 322, 128, 22);
+		mapHeightGetter = new TextField(gc, gc.getDefaultFont(), 331, 322, 128, 22);
 
 	}
 
@@ -35,8 +38,14 @@ public class MapMaker extends BasicGameState {
 	public void render(GameContainer gc, StateBasedGame game, Graphics g) throws SlickException {
 		g.setBackground(Color.red);
 		if (TextFieldOpen) {
+			g.setColor(Color.black);
+			g.drawString("Map Name:", 53, 218);
+			g.drawString("Map Width:", 53, 304);
+			g.drawString("Map Height:", 331, 304);
 			mapNameGetter.render(gc, g);
-			g.setBackground(Color.cyan);
+			mapWidthGetter.render(gc, g);
+			mapHeightGetter.render(gc, g);
+			g.setBackground(Color.white);
 		}
 
 		if (TextFieldOpen == false) {
@@ -50,10 +59,27 @@ public class MapMaker extends BasicGameState {
 		Input input = gc.getInput();
 
 		if (TextFieldOpen) {
+			
 			if (input.isKeyPressed(Input.KEY_ENTER)) {
-				path = "saves/" + mapNameGetter.getText() + ".txt";
-				// System.out.println(path);
-				TextFieldOpen = false;
+				int mapWidthGetterInt = Integer.parseInt(mapWidthGetter.getText()); 
+				int mapHeightGetterInt = Integer.parseInt(mapHeightGetter.getText());
+					if(mapNameGetter.getText() != null){
+						path = "saves/" + mapNameGetter.getText() + ".txt";
+						File f = new File(path);
+						if(f.exists() == false && !f.isDirectory() == false) { 
+							if(mapWidthGetterInt >= 512 && mapHeightGetterInt >= 512){
+							
+								TextFieldOpen = false;
+								System.out.println(mapWidthGetterInt);
+								System.out.println(mapHeightGetterInt);
+								
+							}
+						}
+						
+					}
+					
+				
+				
 			}
 		}
 
