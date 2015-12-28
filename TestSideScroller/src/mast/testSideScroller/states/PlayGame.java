@@ -45,6 +45,7 @@ public class PlayGame extends BasicGameState{
 
 		
 		map.mapDraw(g, Map.getMapData());
+
 		player.render(g);
 		//textField.render(gc, g);
 		
