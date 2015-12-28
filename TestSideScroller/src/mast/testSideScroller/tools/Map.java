@@ -11,6 +11,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.geom.Rectangle;
 
 public class Map {
 	private static int mapWidth = 512, mapHeight = 512;
@@ -167,6 +168,32 @@ public class Map {
 		// g.drawImage(Resources.returnImage("tileSheet").getSubImage(32, 0, 32,
 		// 32), 200, 200);
 
+	}
+	
+	public Rectangle[] getSurounding(Rectangle hitbox){
+		Rectangle[] rects = null;
+		if(hitbox.getMaxX() % 32 == 0 && hitbox.getMaxY() % 32 == 0){
+			rects = new Rectangle[9];
+			int centerX = (int) (hitbox.getCenterX()) / 32;
+			int centerY = (int) (hitbox.getCenterY()) / 32;
+			
+			for(int x = centerX - 1; x < centerX + 3; x++){
+				for(int y = centerY - 1; y < centerY + 3; y++){
+					if(mapData[x][y].charAt(0) == 'a'){
+						rects[((y - (centerY - 1)) * 3) + (x - (centerX - 1))] = new Rectangle(x, y, 32, 32);
+					}else{
+						rects[((y - (centerY - 1)) * 3) + (x - (centerX - 1))] = null;
+					}
+				}
+				return rects;
+			}
+		}
+		//start here
+		
+		
+		
+		
+		return rects;
 	}
 
 	public static String[][] getMapData() {

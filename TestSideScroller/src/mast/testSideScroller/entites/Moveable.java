@@ -1,19 +1,19 @@
 package mast.testSideScroller.entites;
 
+import org.newdawn.slick.geom.Rectangle;
+
 public abstract class Moveable {
 
 	private int x = 0, y = 0;
+	public Rectangle hitbox;
 	private double dY = 0;
 	private EntityID ID;
-	
-	public Moveable(EntityID id){
-		ID = id;
-	}
 	
 	public Moveable(int x, int y, EntityID id){
 		this.x = x;
 		this.y = y;
 		ID = id;
+		hitbox = new Rectangle(x, y, 32, 32);
 	}
 
 	abstract void tick(int delta);
