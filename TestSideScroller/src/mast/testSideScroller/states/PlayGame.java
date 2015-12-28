@@ -43,8 +43,10 @@ public class PlayGame extends BasicGameState{
 		g.setBackground(Color.green);
 		//g.drawImage(Resources.returnImage("tileSheet"), 0, 0);
 
-		player.render(g);
+		
 		map.mapDraw(g, Map.getMapData());
+		
+		player.render(g);
 		//textField.render(gc, g);
 		
 		
