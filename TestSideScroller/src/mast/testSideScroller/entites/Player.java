@@ -34,12 +34,25 @@ public class Player extends Moveable{
 			addToX(3);
 		}
 		
-		if(jumping()){
-			addTodY(-0.1);
+		if(jumping() && touchingGround()){
+			addTodY(-10);
 		}
 		
 		addToY(getdY());
 		
+		if(!touchingGround()){
+			addTodY(0.5);
+		}else{
+			setdY(0);
+		}
+	}
+	
+	private boolean touchingGround(){
+		if(getY() < 412){
+			return false;
+		}else{
+			return true;
+		}
 	}
 	
 	private boolean movingLeft(){
