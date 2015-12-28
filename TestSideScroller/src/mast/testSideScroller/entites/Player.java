@@ -10,8 +10,8 @@ public class Player extends Moveable{
 	
 	private Input in;
 
-	public Player(GameContainer gc) {
-		super(EntityID.Player);
+	public Player(GameContainer gc, int x, int y) {
+		super(x, y, EntityID.Player);
 		in = gc.getInput();
 	}
 	
@@ -33,6 +33,13 @@ public class Player extends Moveable{
 		if(movingRight()){
 			addToX(3);
 		}
+		
+		if(jumping()){
+			addTodY(-0.1);
+		}
+		
+		addToY(getdY());
+		
 	}
 	
 	private boolean movingLeft(){
@@ -41,6 +48,10 @@ public class Player extends Moveable{
 	
 	private boolean movingRight(){
 		return in.isKeyDown(Input.KEY_D);
+	}
+	
+	private boolean jumping(){
+		return in.isKeyDown(Input.KEY_W);
 	}
 
 }

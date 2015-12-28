@@ -33,7 +33,7 @@ public class PlayGame extends BasicGameState{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		player = new Player(gc);
+		player = new Player(gc, 100, 100);
 		textField = new TextField(gc, gc.getDefaultFont(), 50, 50, 200, 20);
 		
 	}
@@ -43,8 +43,9 @@ public class PlayGame extends BasicGameState{
 		g.setBackground(Color.green);
 		//g.drawImage(Resources.returnImage("tileSheet"), 0, 0);
 
-		player.render(g);
+		
 		map.mapDraw(g, Map.getMapData());
+		player.render(g);
 		//textField.render(gc, g);
 		
 		
